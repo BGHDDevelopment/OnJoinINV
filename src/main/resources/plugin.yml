@@ -1,0 +1,5 @@
+name: OnJoinINV
+version: ${project.version}
+main: net.noodles.join.main.Main
+authors: [BGHDDevelopment]
+website: https://bghddevelopment.com
