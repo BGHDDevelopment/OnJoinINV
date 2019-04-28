@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import sun.security.jca.GetInstance;
@@ -68,7 +70,29 @@ public class InvOpen implements Listener {
             p.kickPlayer("You requested to quit the server.");
 
         }
-
-
     }
+
+    @EventHandler
+    public void onCommand(final PlayerCommandPreprocessEvent e) {
+        if (Main.plugin.getConfig().getBoolean("StopCommandUsage.Enabled")) {
+            final Player p = e.getPlayer();
+            if (this.Join.contains(p.getName())) {
+                final String message = e.getMessage();
+                final String[] array = message.split(" ");
+                if (!array[0].equalsIgnoreCase("/msg") && !array[0].equalsIgnoreCase("/tell") && !array[0].equalsIgnoreCase("/r") && !array[0].equalsIgnoreCase("/whisper") && !array[0].equalsIgnoreCase("/t") && !array[0].equalsIgnoreCase("/w")) {
+                    e.setCancelled(true);
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onTalk(final AsyncPlayerChatEvent e) {
+        final Player p = e.getPlayer();
+        if (this.Join.contains(p.getName())) {
+            e.setCancelled(true);
+        }
+    }
+    
 }
+
