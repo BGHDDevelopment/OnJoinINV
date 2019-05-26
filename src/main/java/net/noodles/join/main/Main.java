@@ -1,6 +1,5 @@
 package net.noodles.join.main;
 
-import net.noodles.join.main.inv.ClickEvents;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,7 +27,6 @@ public final class Main extends JavaPlugin {
     public void registerEvents() {
         final PluginManager pm = this.getServer().getPluginManager();
         pm.registerEvents(new InvOpen(), this);
-        pm.registerEvents(new ClickEvents(), this);
 
 
     }

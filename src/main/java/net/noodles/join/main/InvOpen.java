@@ -33,12 +33,12 @@ public class InvOpen implements Listener {
         InvCreator.Main.setItem(3, Items.Yes(p));
         InvCreator.Main.setItem(5, Items.No(p));
         this.Join.add(p.getName());
-        for (int i = 0; i < 9; ++i) {
+/*        for (int i = 0; i < 9; ++i) {
             if (InvCreator.Main.getItem(i) == null) {
                 InvCreator.Main.setItem(i, Items.Glass(p));
-            }
-            Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> p.openInventory(InvCreator.Main), 1);
-        }
+            }*/
+        Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> p.openInventory(InvCreator.Main), 1);
+    //  }
     }
 
     @EventHandler
@@ -55,20 +55,24 @@ public class InvOpen implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent e) {
-        if (e.getInventory().getName().equals(InvNames.Main)) {
-        }
         Player p = (Player) e.getWhoClicked();
-        if (e.getCurrentItem() == null)
+        if (e.getView().getTitle().equals(null)) {
             return;
-        if (e.getCurrentItem().equals(Items.Yes(p))) {
-            this.Join.remove(p.getName());
-            p.closeInventory();
-            p.sendMessage(ChatColor.GREEN + "Successfully joined the server.");
         }
-        if (e.getCurrentItem().equals(Items.No(p))) {
-            this.Join.remove(p.getName());
-            p.kickPlayer("You requested to quit the server.");
-
+        if (e.getCurrentItem() == null) {
+            return;
+        }
+        if (e.getView().getTitle().equals(InvNames.Main)) {
+            e.setCancelled(true);
+            if (e.getCurrentItem().equals(Items.Yes(p))) {
+                this.Join.remove(p.getName());
+                p.closeInventory();
+                p.sendMessage(ChatColor.GREEN + "Successfully joined the server.");
+            }
+            if (e.getCurrentItem().equals(Items.No(p))) {
+                this.Join.remove(p.getName());
+                p.kickPlayer("You requested to quit the server.");
+            }
         }
     }
 
@@ -93,6 +97,6 @@ public class InvOpen implements Listener {
             e.setCancelled(true);
         }
     }
-    
+
 }
 
