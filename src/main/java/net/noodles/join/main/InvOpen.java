@@ -33,12 +33,7 @@ public class InvOpen implements Listener {
         InvCreator.Main.setItem(3, Items.Yes(p));
         InvCreator.Main.setItem(5, Items.No(p));
         this.Join.add(p.getName());
-/*        for (int i = 0; i < 9; ++i) {
-            if (InvCreator.Main.getItem(i) == null) {
-                InvCreator.Main.setItem(i, Items.Glass(p));
-            }*/
         Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> p.openInventory(InvCreator.Main), 1);
-    //  }
     }
 
     @EventHandler
