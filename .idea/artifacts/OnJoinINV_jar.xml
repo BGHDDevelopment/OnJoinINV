@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="OnJoinINV:jar">
-    <output-path>$PROJECT_DIR$/../../Development</output-path>
-    <root id="archive" name="OnJoinINV.jar">
-      <element id="module-output" name="OnJoinINV" />
-    </root>
-  </artifact>
-</component>
