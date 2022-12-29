@@ -1,8 +1,6 @@
-package net.noodles.join.main;
+package com.bghddevelopment.join.inv;
 
-import net.noodles.join.main.inv.InvCreator;
-import net.noodles.join.main.inv.InvNames;
-import net.noodles.join.main.inv.Items;
+import com.bghddevelopment.join.OnJoinINV;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -13,7 +11,6 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import sun.security.jca.GetInstance;
 
 import java.util.ArrayList;
 
@@ -33,7 +30,7 @@ public class InvOpen implements Listener {
         InvCreator.Main.setItem(3, Items.Yes(p));
         InvCreator.Main.setItem(5, Items.No(p));
         this.Join.add(p.getName());
-        Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> p.openInventory(InvCreator.Main), 1);
+        Bukkit.getScheduler().runTaskLater(OnJoinINV.getInstance(), () -> p.openInventory(InvCreator.Main), 1);
     }
 
     @EventHandler
@@ -73,7 +70,7 @@ public class InvOpen implements Listener {
 
     @EventHandler
     public void onCommand(final PlayerCommandPreprocessEvent e) {
-        if (Main.plugin.getConfig().getBoolean("StopCommandUsage.Enabled")) {
+        if (OnJoinINV.getInstance().getConfig().getBoolean("StopCommandUsage.Enabled")) {
             final Player p = e.getPlayer();
             if (this.Join.contains(p.getName())) {
                 final String message = e.getMessage();

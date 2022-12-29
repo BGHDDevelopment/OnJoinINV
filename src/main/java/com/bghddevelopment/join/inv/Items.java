@@ -1,4 +1,4 @@
-package net.noodles.join.main.inv;
+package com.bghddevelopment.join.inv;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -15,13 +15,7 @@ public class Items {
         stone.setItemMeta(stonem);
         return stone;
     }
-	
-    
-    private static String getColor(String msg) {
-        return ChatColor.translateAlternateColorCodes('&', msg);
-    }
 
-    
     public static ItemStack Yes(Player p) {
         ItemStack stone = new ItemStack(Material.EMERALD);
         ItemMeta stonem = stone.getItemMeta();
@@ -43,6 +37,4 @@ public class Items {
         stone.setItemMeta(stonem);
         return stone;
     }
-
-    
 }
